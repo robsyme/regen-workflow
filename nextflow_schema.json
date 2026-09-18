@@ -1,0 +1,44 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "https://raw.githubusercontent.com/robsyme/regen-workflow/main/nextflow_schema.json",
+    "title": "Rob's workflow parameters",
+    "description": "It's amazing",
+    "type": "object",
+    "$defs": {
+        "input_options": {
+            "title": "Input options",
+            "type": "object",
+            "fa_icon": "fas fa-file-csv",
+            "description": "Greetings to process and how to label the batch.",
+            "required": [
+                "input"
+            ],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.csv$",
+                    "description": "CSV file with one greeting per row, in the first column.",
+                    "help_text": "The file has no header. Only the first column is read; anything after it is ignored.",
+                    "default": "${projectDir}/assets/greetings.csv",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "batch": {
+                    "type": "string",
+                    "description": "Name used to label the collected output and report files.",
+                    "help_text": "Used in the 'COLLECTED-<batch>-output.txt' and '<batch>-report.txt' filenames, so keep it filesystem-safe.",
+                    "default": "batch",
+                    "pattern": "^[\\w.-]+$",
+                    "fa_icon": "fas fa-tag"
+                }
+            }
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/$defs/input_options"
+        }
+    ]
+}
