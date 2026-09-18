@@ -76,7 +76,7 @@ process cowpy {
  * Pipeline parameters
  */
 params {
-    input: Path = 'data/greetings.csv'
+    input: Path = "${projectDir}/assets/greetings.csv"
     batch: String = 'batch'
 }
 
